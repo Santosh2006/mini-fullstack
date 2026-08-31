@@ -1,11 +1,34 @@
 let time = 60;
+let timer;
 
-let timer = setInterval(function() {
-    document.getElementById("timer").textContent = time;
-    time--;
+let display = document.getElementById("timer");
+let startButton = document.getElementById("start");
+let resetButton = document.getElementById("reset");
 
-    if (time < 0) {
-        clearInterval(timer);
-        document.getElementById("timer").textContent = "Time's Up!";
-    }
-}, 1000);
+startButton.addEventListener("click", function() {
+
+    clearInterval(timer);
+
+    timer = setInterval(function() {
+
+        display.textContent = time;
+
+        if (time <= 0) {
+            clearInterval(timer);
+            display.textContent = "Time's Up!";
+        }
+
+        time--;
+
+    }, 1000);
+});
+
+
+resetButton.addEventListener("click", function() {
+
+    clearInterval(timer);
+
+    time = 60;
+    display.textContent = time;
+
+});
